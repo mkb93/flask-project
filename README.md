@@ -27,6 +27,12 @@ figure out what i want to make (has a sign in function, has a data storage funct
     what is the point of storing data like this?
     will there be restrictions on how data is stored?
 # idea hotpot manager
+  manage the dietary requirements
   manage the dates and location that hotpot pots are hosted. manage the ingredients that are preferred and where we get our ingredients from.
   maybe check the tian tian has an api
   we can also make like a tracker to find top hotpotters and also most locations
+
+# reference for flask
+  using flask folllow a simple setup via this website
+  https://python-web.teclado.com/section07/lectures/01_hello_world_flask/
+  
