@@ -21,8 +21,8 @@ print(SUPABASE_URL, SUPABASE_KEY)
 #   return conn
 
 # test
-@app.route('/test-db', methods=['GET'])
-def test_db():
+@app.route('/', methods=['GET'])
+def home():
   headers = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}"
