@@ -36,24 +36,30 @@ def home():
 
 @app.route('/add-item', methods=['POST'])
 def add_item():
-  data = request.json
-  headers = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-     "Content-Type": "application/json"
-    }
+  data = request.get_json()
 
-  payload = {
-    "name": data.get("name"),
-    "location": data.get("location")
-    }
+  print("Received data:", data)
 
-  response = requests.post(f"{SUPABASE_URL}/rest/v1/items", json=payload, headers=headers)
+  # headers = {
+  #   "apikey": SUPABASE_KEY,
+  #   "Authorization": f"Bearer {SUPABASE_KEY}",
+  #    "Content-Type": "application/json"
+  #   }
 
-  if response.status_code != 201:
-    return jsonify({"error": response.json()}), response.status_code
+  # payload = {
+  #   "name": data.get("name"),
+  #   "location": data.get("location")
+  #   }
 
-  return jsonify(response.json())
+  response = requests.post(f"{SUPABASE_URL}/rest/v1/items/data", json=data)
+  print("Response status:", response.status_code)
+  print("Response text:", response.text)
+
+
+  try:
+    return jsonify(response.json())
+  except requests.exceptions.JSONDecodeError:
+    return jsonify({"error": "Invalid JSON response from Supabase"}), 500
 # @app.route("/")
 # def home():
 #   conn = get_db_connection()
