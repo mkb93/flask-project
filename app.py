@@ -50,6 +50,8 @@ def add_item():
 
   response = requests.post(f"{SUPABASE_URL}/rest/v1/items", json=payload, headers=headers)
 
+  print("Supabase Response Code:", response.status_code)
+  print("Supabase Response Body:", response.text)
   if response.status_code != 201:
     return jsonify({"error": response.json()}), response.status_code
 

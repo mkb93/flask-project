@@ -17,6 +17,7 @@ export const getItems = async () => {
 export const addItem = async (item) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/add-item`, item);
+        console.log(response.json)
         return response.data;
     } catch (error) {
         console.error("Error adding item:", error);

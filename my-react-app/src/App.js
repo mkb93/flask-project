@@ -28,6 +28,8 @@ function App() {
       setItems([...items, newItem]);
       setName('');
       setLocation('');
+      
+
     } catch (error) {
       alert('Failed to add item. check console for details.');
     }
