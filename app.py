@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 import requests
 import psycopg2
-from supabase import create_client
+# from supabase import create_client
 import os
 from dotenv import load_dotenv
 from flask_cors import CORS
@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app)
 
 print(SUPABASE_URL, SUPABASE_KEY)
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+# supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # test
 @app.route('/', methods=['GET'])
