@@ -1,40 +1,17 @@
-import psycopg2
 from dotenv import load_dotenv
 import os
-
-# Load environment variables from .env
+from supabase import create_client
 load_dotenv()
 
-# Fetch variables
-USER = os.getenv("user")
-PASSWORD = os.getenv("password")
-HOST = os.getenv("host")
-PORT = os.getenv("port")
-DBNAME = os.getenv("dbname")
+url = os.getenv("SUPABASE_URL")
+key = os.getenv("SUPABASE_KEY")
 
-# Connect to the database
-try:
-    connection = psycopg2.connect(
-        user=USER,
-        password=PASSWORD,
-        host=HOST,
-        port=PORT,
-        dbname=DBNAME
-    )
-    print("Connection successful!")
-    
-    # Create a cursor to execute SQL queries
-    cursor = connection.cursor()
-    
-    # Example query
-    cursor.execute("SELECT NOW();")
-    result = cursor.fetchone()
-    print("Current Time:", result)
+supabase = create_client(url, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ5Zm1oZHdsbmF0ZG1pdmFqdnFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg3MDE3NzEsImV4cCI6MjA1NDI3Nzc3MX0.ok9GxAzBL3vTDqv6K7uX4-zd0OjQ2tR1bcTGGM5fV94")
 
-    # Close the cursor and connection
-    cursor.close()
-    connection.close()
-    print("Connection closed.")
+data = supabase.table('items').insert({"name": "face7", 'location': 'face7'}).execute()
+data = supabase.table('items').insert({"name": "face6", 'location': 'face6'}).execute()
+data = supabase.table('items').update({"name": "face8"}).eq("name", "face7").execute()
+data= supabase.table("items").delete().eq("name", "face6").execute()
 
-except Exception as e:
-    print(f"Failed to connect: {e}")
+data = supabase.table("items").select("*").execute()
+print(data)

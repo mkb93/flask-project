@@ -1,10 +1,11 @@
 from flask import Flask, jsonify, request
 import requests
 import psycopg2
+from supabase import create_client
 import os
 from dotenv import load_dotenv
 from flask_cors import CORS
-
+import json
 
 load_dotenv()
 SUPABASE_URL = os.getenv("SUPABASE_URL")
@@ -13,12 +14,7 @@ app = Flask(__name__)
 CORS(app)
 
 print(SUPABASE_URL, SUPABASE_KEY)
-# Database connection
-# DATABASE_URL = os.getenv("https://byfmhdwlnatdmivajvqq.supabase.co", "postgresql://postgres:w.96aRFcy6Gs6RQ@db.byfmhdwlnatdmivajvqq.supabase.co:5432/postgres")
-
-# def get_db_connection():
-#   conn = psycopg2.connect(DATABASE_URL)
-#   return conn
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # test
 @app.route('/', methods=['GET'])
@@ -27,6 +23,10 @@ def home():
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}"
   }
+  # data = supabase.table("items").select("*").execute()
+  # print(data)
+  
+
   response= requests.get(f"{SUPABASE_URL}/rest/v1/items", headers=headers)
 
   if response.status_code != 200:
@@ -34,7 +34,7 @@ def home():
   
   return jsonify(response.json())
 
-@app.route('/add-item', methods=['POST'])
+@app.route('/add-item/', methods=['POST'])
 def add_item():
   data = request.json
   headers = {
@@ -49,11 +49,16 @@ def add_item():
     }
 
   response = requests.post(f"{SUPABASE_URL}/rest/v1/items", json=payload, headers=headers)
+  print("Received data:", response)
 
   print("Supabase Response Code:", response.status_code)
   print("Supabase Response Body:", response.text)
-  if response.status_code != 201:
-    return jsonify({"error": response.json()}), response.status_code
+  if response.status_code == 201:
+    return jsonify({"message": "data added succesfully"}), 201
+  try:
+    return jsonify(response.json()), response.status_code
+  except requests.exceptions.JSONDecodeError:
+    return jsonify({"error": "Invalid response from supabase"}),500
 
   return jsonify(response.json())
 # @app.route("/")
