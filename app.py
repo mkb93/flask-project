@@ -61,6 +61,23 @@ def add_item():
     return jsonify({"error": "Invalid response from supabase"}),500
 
   return jsonify(response.json())
+
+@app.route('/delete-item/<int:item_id>', methods=['DELETE'])
+def delete_item(item_id):
+  headers = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json"
+  }
+
+  response = requests.delete(f"{SUPABASE_URL}/rest/v1/items?id=eq.{item_id}", headers=headers)
+
+  if response.status_code == 204:  # 204 means no content, meaning successful deletion
+        return jsonify({"message": "Item deleted successfully"}), 204
+  try:
+    return jsonify(response.json()), response.status_code
+  except requests.exceptions.JSONDecodeError:
+    return jsonify({"error": "Invalid response from Supabase"}), 500
 # @app.route("/")
 # def home():
 #   conn = get_db_connection()
