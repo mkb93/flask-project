@@ -35,3 +35,14 @@ export const deleteItem = async (itemId) => {
         return { error: "Failed to delete the item"}
     }
 }
+//update item
+export const updateItem = async (id, updatedItem) => {
+    try {
+        const response = await axios.put(`${API_BASE_URL}/update-item/${id}`, updatedItem);
+        return response.data;
+
+    } catch (error) {
+        console.error('failed to update item:', error);
+        return { error: "failed to update item"};
+    }
+}

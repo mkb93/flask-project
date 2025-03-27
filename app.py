@@ -78,6 +78,27 @@ def delete_item(item_id):
     return jsonify(response.json()), response.status_code
   except requests.exceptions.JSONDecodeError:
     return jsonify({"error": "Invalid response from Supabase"}), 500
+  
+@app.route('/update-item/<int:item_id>', methods=['PUT'])
+def update_item(item_id):
+  data = request.json
+  headers={
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json"
+  }
+  response = requests.patch(
+    f"{SUPABASE_URL}/rest/v1/items?id=eq.{item_id}",
+    json={"name":data.get("name"), "location": data.get("location")},
+    headers=headers
+  )
+  if response.status_code == 200:
+    return jsonify({"message":"Item updated successfully"}), 200
+  try:
+    return jsonify(response.json()), response.status_code
+  except requests.exceptions.JSONDecodeError:
+    return jsonify({'error':'Invalid response from supabase'}), 500
+
 # @app.route("/")
 # def home():
 #   conn = get_db_connection()
