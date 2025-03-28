@@ -89,7 +89,7 @@ def update_item(item_id):
   }
   response = requests.patch(
     f"{SUPABASE_URL}/rest/v1/items?id=eq.{item_id}",
-    json={"name":data.get("name"), "location": data.get("location")},
+    json={"name":data.get("name"), "location": data.get("location"), "description": data.get("description")},
     headers=headers
   )
   if response.status_code == 200:

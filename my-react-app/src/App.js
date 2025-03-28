@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getItems, addItem, deleteItem, updateItem } from './api/api';
 import './App.css';
+import './modal.css';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -51,7 +52,7 @@ function App() {
     if (!editItem.name || !editItem.location) return alert("Please fill out all fields");
 
     try {
-      await updateItem(editItem.id, { name: editItem.name, location: editItem.location });
+      await updateItem(editItem.id, { name: editItem.name, location: editItem.location, description: editItem.description });
       setIsModalOpen(false);
       fetchData();
     } catch (error) {
@@ -108,6 +109,11 @@ function App() {
                 value={editItem.location} 
                 onChange={(e) => setEditItem({ ...editItem, location: e.target.value })}
               />
+              <textarea
+                value={editItem.description}
+                onChange={(e) => setEditItem({ ...editItem, description: e.target.value })}
+                placeholder="Description"
+              ></textarea>
               <button type="submit">Update</button>
               <button onClick={() => setIsModalOpen(false)}>Cancel</button>
             </form>
