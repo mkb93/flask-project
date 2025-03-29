@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const API_BASE_URL = 'https://flask-project-68m0.onrender.com'; 
-const API_BASE_URL = 'http://localhost:5000'; 
+const API_BASE_URL = 'https://flask-project-68m0.onrender.com'; 
+// const API_BASE_URL = 'http://localhost:5000'; 
 
 // Fetch items from the database
 export const getItems = async () => {
