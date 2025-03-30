@@ -18,14 +18,16 @@
 }
 .container {
   display: flex;
+  align-items: flex-start; /* Align sidebar and content at the top */
 }
 
 .sidebar {
   width: 250px;
-  background: #f8f9fa;
-  padding: 20px;
-  border-right: 1px solid #ccc;
   height: 100vh;
+  position: relative; /* Prevents overlap */
+  background: #f4f4f4; /* Light background */
+  padding: 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar h2 {
