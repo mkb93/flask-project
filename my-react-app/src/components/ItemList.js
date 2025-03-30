@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/ItemList.css';
 
 const ItemList = ({ items, handleEditClick, handleDelete}) => {
   return (

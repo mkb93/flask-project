@@ -59,3 +59,43 @@
   flex: 1;
   padding: 20px;
 }
+/* General styles for mobile */
+@media (max-width: 768px) {
+  .App {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Reduce header size */
+    text-align: center;
+  }
+
+  .container {
+    flex-direction: column; /* Stack sidebar and content vertically */
+  }
+
+  .sidebar {
+    width: 100%; /* Full width sidebar */
+    margin-bottom: 10px;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  /* Make buttons larger and easier to tap */
+  button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  input, textarea, select {
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+}

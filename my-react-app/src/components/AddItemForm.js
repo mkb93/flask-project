@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import '../styles/AddItemForm.css';
 
 const AddItemForm = ({ presetLocations, handleAddItem}) => {
   const [name, setName] = useState('');
@@ -29,7 +30,7 @@ const AddItemForm = ({ presetLocations, handleAddItem}) => {
               <option key={loc} value={loc}>{loc}</option>
             ))}
           </select>
-            <button type='submit'></button>
+            <button type='submit'>Submit</button>
         </form>
       )}
     </div>

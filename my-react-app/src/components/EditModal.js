@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/EditModal.css';
 
 const EditModal = ({editItem,setEditItem,handleUpdateItem, setIsModalOpen}) => {
   return (

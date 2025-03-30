@@ -5,7 +5,7 @@ import Search from "./components/Search";
 import ItemList from "./components/ItemList";
 import AddItemForm from "./components/AddItemForm";
 import EditModal from "./components/EditModal";
-import "./App.css";
+import "./styles/App.css";
 
 function App() {
   const [items, setItems] = useState([]);

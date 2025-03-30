@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles/Search.css';
 
 const Search = ({ searchTerm, setSearchTerm, onSearch }) => {
   const handleChange = (e) => {
