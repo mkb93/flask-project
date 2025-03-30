@@ -102,7 +102,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Supabase Item Manager</h1>
+      <h1>Item Manager</h1>
 
       {/* Search Bar & Add Button */}
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearch={handleSearch} />
