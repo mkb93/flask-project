@@ -15,6 +15,7 @@ function App() {
   const [editItem, setEditItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false)
 
   const presetLocations = [
     "karims room", "giulianas room", "adams room",
@@ -109,8 +110,9 @@ function App() {
       <AddItemForm presetLocations={presetLocations} handleAddItem={handleAddItem} />
 
       <div className="container">
-        <Sidebar locations={locations} selectedLocation={selectedLocation} handleFilterByLocation={handleFilterByLocation} />
-        <div className="content">
+        <Sidebar locations={locations} selectedLocation={selectedLocation} handleFilterByLocation={handleFilterByLocation} isOpen={isSideBarOpen} setIsOpen={setIsSideBarOpen}/>
+      
+        <div className={`content ${isSideBarOpen ? "shifted" : ""}`}>
           <h2>Items List:</h2>
           <ItemList items={filteredItems} handleEditClick={handleEditClick} handleDelete={handleDelete} />
         </div>

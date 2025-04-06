@@ -1,13 +1,5 @@
 /* Hide sidebar by default on small screens */
 @media (max-width: 768px) {
-  .sidebar {
-    display: none;
-    position: absolute;
-    width: 100%;
-    background: white;
-    padding: 10px;
-  }
-
   .menu-btn {
     display: block;
     font-size: 1.5rem;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/SideBar.css';
 
-const Sidebar = ({ locations, selectedLocation, handleFilterByLocation }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Sidebar = ({ locations, selectedLocation, handleFilterByLocation, isOpen, setIsOpen }) => {
+  // const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   // Check screen width on resize
@@ -22,13 +22,20 @@ const Sidebar = ({ locations, selectedLocation, handleFilterByLocation }) => {
     <>
       {/* Show the toggle button ONLY on mobile */}
       {isMobile && (
-        <button className="sidebar-toggle" onClick={() => setIsOpen(!isOpen)}>
+        <button className="sidebar-toggle" onClick={() => {
+          setIsOpen(true)
+          }}>
           ☰
         </button>
       )}
 
       {/* Sidebar: open by default on desktop, toggled on mobile */}
-      <aside className={`sidebar ${isMobile && !isOpen ? "closed" : ""}`}>
+      <aside className={`sidebar ${(isMobile && isOpen) || !isMobile ? "open" : ""}`}>
+      {isMobile && (
+      <button className="sidebar-close" onClick={() => setIsOpen(false)}>
+        ✕
+      </button>
+    )}
         <h2>Filter By Location</h2>
         <ul>
           <li
