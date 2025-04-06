@@ -22,7 +22,7 @@ const Sidebar = ({ locations, selectedLocation, handleFilterByLocation, isOpen, 
     <>
       {/* Show the toggle button ONLY on mobile */}
       {isMobile && (
-        <button className="sidebar-toggle" onClick={() => {
+        <button className={`sidebar-toggle ${(isMobile && isOpen) || !isMobile ? "open" : ""}`} onClick={() => {
           setIsOpen(true)
           }}>
           ☰
